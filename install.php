@@ -1,6 +1,6 @@
 <?php 
 require_once("template.php");
-define("WEB_URL", "."); //Website name
+define("WEB_PREFIX", ""); //Website name
 define("NAME", _('Status page')); //Website name
 define("MINIMUM_PHP_VERSION", "5.4.0");
 define("POLICY_URL", "policy.php"); //Default policy URL
@@ -138,7 +138,7 @@ if(isset($_POST['server']) && empty($message))
 		unlink("install.sql");
 		unlink(__FILE__);
 
-		header("Location: ".WEB_URL);
+		header("Location: ".WEB_PREFIX);
 	}
 }
 Template::render_header(_("Install"));

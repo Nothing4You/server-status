@@ -92,7 +92,7 @@ class User
       $stmt->bind_param("i", $this->id);
       $stmt->execute();
       $stmt->close();
-      header("Location: ".WEB_URL."/admin/?do=user&id=".$id);
+      header("Location: ".WEB_PREFIX."/admin/?do=user&id=".$id);
     }else{
       $message = _("You don't have the permission to do that!");
     }
@@ -183,7 +183,7 @@ class User
 
       $to      = $email;
       $subject = _('User account created').' - '.NAME;
-      $msg = sprintf(_("Hi %s!<br>"."Your account has been created. You can login with your email address at <a href=\"%s\">%s</a> with password %s - please change it as soon as possible."), $name." ".$surname,WEB_URL."/admin", WEB_URL."/admin", $pass);
+      $msg = sprintf(_("Hi %s!<br>"."Your account has been created. You can login with your email address at <a href=\"%s\">%s</a> with password %s - please change it as soon as possible."), $name." ".$surname,$_SERVER["SERVER_PROTOCOL"]."://".$_SERVER["HTTP_HOST"].WEB_PREFIX."/admin", WEB_PREFIX."/admin", $pass);
       $headers = "Content-Type: text/html; charset=utf-8 ".PHP_EOL;
       $headers .= "MIME-Version: 1.0 ".PHP_EOL;
       $headers .= "From: ".MAILER_NAME.' <'.MAILER_ADDRESS.'>'.PHP_EOL;
@@ -192,7 +192,7 @@ class User
       mail($to, $subject, $msg, $headers);
       if (!INSTALL_OVERRIDE) 
       {
-        header("Location: ".WEB_URL."/admin/?do=settings");
+        header("Location: ".WEB_PREFIX."/admin/?do=settings");
       }
     }
     else {
@@ -266,7 +266,7 @@ class User
     }
 
     $_SESSION['user'] = $id;
-    header("Location: ".WEB_URL."/admin");
+    header("Location: ".WEB_PREFIX."/admin");
   }
 
   /**
@@ -315,7 +315,7 @@ class User
       <div class="col-md-6">
       <?php if($this->id==$_SESSION['user']||$user->get_rank()<1){
       ?>
-        <form action="<?php echo WEB_URL;?>/admin/?do=user&amp;id=<?php echo $this->id; ?>" method="POST">
+        <form action="<?= WEB_PREFIX ?>/admin/?do=user&amp;id=<?php echo $this->id; ?>" method="POST">
           <div class="input-group">
             <div class="col-md-12">
               <div class="row">
@@ -344,7 +344,7 @@ class User
         }?>
       </div>
     </div>
-    <form action="<?php echo WEB_URL;?>/admin/?do=user&amp;id=<?php echo $this->id; ?>" method="POST">
+    <form action="<?= WEB_PREFIX ?>/admin/?do=user&amp;id=<?php echo $this->id; ?>" method="POST">
       <div class="row user">
         <div class="col-md-2 col-md-offset-2"><strong><?php echo _("Username");?></strong></div>
         <div class="col-md-6">
@@ -367,7 +367,7 @@ class User
       </div>
     </form>
 
-    <form action="<?php echo WEB_URL;?>/admin/?do=user&id=<?php echo $this->id; ?>" method="POST">
+    <form action="<?= WEB_PREFIX ?>/admin/?do=user&id=<?php echo $this->id; ?>" method="POST">
       <div class="row user">
         <div class="col-md-2 col-md-offset-2"><strong><?php echo _("Role");?></strong></div>
         <div class="col-md-6"><?php if ($user->get_rank() == 0 && $this->id != $_SESSION['user']){?> 
@@ -384,7 +384,7 @@ class User
 
   <?php if($this->id==$_SESSION['user']||$user->get_rank()<1)
   {?>
-    <form action="<?php echo WEB_URL;?>/admin/?do=user&amp;id=<?php echo $this->id; ?>" method="POST">
+    <form action="<?= WEB_PREFIX ?>/admin/?do=user&amp;id=<?php echo $this->id; ?>" method="POST">
       <div class="row user">
         <div class="col-md-2 col-md-offset-2"><strong>Email</strong></div>
         <div class="col-md-6">
@@ -412,7 +412,7 @@ class User
   if($this->id==$_SESSION['user']){
   ?>
 
-    <form action="<?php echo WEB_URL;?>/admin/?do=user" method="POST">
+    <form action="<?= WEB_PREFIX ?>/admin/?do=user" method="POST">
       <div class="row">
         <div class="col-md-2 col-md-offset-2"><strong><?php echo _("Password");?></strong></div>
         <div class="col-md-6">
@@ -436,9 +436,9 @@ class User
       <div class="col-md-6">
         <?php
         if ($this->active){
-          echo '<a href="'.WEB_URL.'/admin/?do=user&id='.$this->id.'&what=toggle" class="btn btn-danger">'._("Deactivate user")."</a>";
+          echo '<a href="'.WEB_PREFIX.'/admin/?do=user&id='.$this->id.'&what=toggle" class="btn btn-danger">'._("Deactivate user")."</a>";
         }else{
-          echo '<a href="'.WEB_URL.'/admin/?do=user&id='.$this->id.'&what=toggle" class="btn btn-success">'._("Activate user")."</a>";
+          echo '<a href="'.WEB_PREFIX.'/admin/?do=user&id='.$this->id.'&what=toggle" class="btn btn-success">'._("Activate user")."</a>";
         }
         ?>
       </div>
@@ -473,7 +473,7 @@ class User
       $stmt->bind_param("si",$_POST["username"],$id);
       $stmt->execute();
       $stmt->close();
-      header("Location:  ".WEB_URL."/admin/?do=user&id=".$id);
+      header("Location:  ".WEB_PREFIX."/admin/?do=user&id=".$id);
     }
   }
 
@@ -507,7 +507,7 @@ class User
       $stmt->bind_param("ssi",$_POST["name"],$_POST["surname"],$id);
       $stmt->execute();
       $stmt->close();
-      header("Location:  ".WEB_URL."/admin/?do=user&id=".$id);
+      header("Location:  ".WEB_PREFIX."/admin/?do=user&id=".$id);
     }
   }
 
@@ -617,7 +617,7 @@ class User
 
     $token = Token::add($id, 'passwd', $time);
 
-    $link = WEB_URL."/admin/?do=lost-password&id=$id&token=$token";
+    $link = WEB_PREFIX."/admin/?do=lost-password&id=$id&token=$token";
     $to      = $email;
     $user = new User($id);
     $subject = _('Reset password') . ' - '.NAME;
@@ -646,7 +646,7 @@ class User
       $stmt->bind_param("sd", $email, $id);
       $stmt->execute();
       $stmt->get_result();
-      header("Location: ".WEB_URL."/admin/?do=user&id=".$id);
+      header("Location: ".WEB_PREFIX."/admin/?do=user&id=".$id);
       return;
     }
 
@@ -654,7 +654,7 @@ class User
 
     $token = Token::add($id, 'email;$email', $time);
 
-    $link = WEB_URL."/admin/?do=change-email&id=$id&token=$token";
+    $link = WEB_PREFIX."/admin/?do=change-email&id=$id&token=$token";
     $to      = $email;
     $subject = _('Email change').' - '.NAME;
     $msg = sprintf(_( "Hi %s!<br>Below you will find link to change your email. The link is valid for 24hrs. If you didn't request this, feel free to ignore it. <br><br><a href=\"%s\">CHANGE EMAIL</a><br><br>If the link doesn't work, copy &amp; paste it into your browser: <br>%s"), $user->get_name(), $link, $link);
@@ -688,7 +688,7 @@ class User
       $stmt->execute();
       $stmt->get_result();
       Token::delete($token);
-      header("Location: ".WEB_URL."/admin/");
+      header("Location: ".WEB_PREFIX."/admin/");
     }
     else
     {
@@ -714,7 +714,7 @@ class User
       setcookie('user', null, -1, '/');
       setcookie('token', null, -1, '/');
     }
-    header("Location: ".WEB_URL."/admin");
+    header("Location: ".WEB_PREFIX."/admin");
   }
 
   /**
@@ -730,7 +730,7 @@ class User
       $stmt = $mysqli->prepare("UPDATE users SET permission=? WHERE id=?");
       $stmt->bind_param("si", $permission, $id);
       $stmt->execute();  
-      header("Location: ".WEB_URL."/admin/?do=user&id=".$id);
+      header("Location: ".WEB_PREFIX."/admin/?do=user&id=".$id);
     }
     else{
       $message = _("You don't have permission to do that!");

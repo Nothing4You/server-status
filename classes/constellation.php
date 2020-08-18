@@ -39,7 +39,7 @@ class Constellation
     {
       if ($offset) 
       {
-        echo '<noscript><div class="centered"><a href="'.WEB_URL.'/?offset='.($offset-$limit).'&timestamp='.$timestamp.'" class="btn btn-default">'._("Back").'</a></div></noscript>';
+        echo '<noscript><div class="centered"><a href="'.WEB_PREFIX.'/?offset='.($offset-$limit).'&timestamp='.$timestamp.'" class="btn btn-default">'._("Back").'</a></div></noscript>';
       }
       echo "<h3>"._("Past incidents")."</h3>";
     }
@@ -58,7 +58,7 @@ class Constellation
 
       if ($show)
       {
-        echo '<div class="centered"><a href="'.WEB_URL.'/?offset='.($offset).'&timestamp='.$timestamp.'" id="loadmore" class="btn btn-default">'._("Load more").'</a></div>';
+        echo '<div class="centered"><a href="'.WEB_PREFIX.'/?offset='.($offset).'&timestamp='.$timestamp.'" id="loadmore" class="btn btn-default">'._("Load more").'</a></div>';
       }
     }
   }

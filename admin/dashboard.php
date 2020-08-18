@@ -37,7 +37,7 @@ Template::render_header(_("Dashboard"), true);
       <div class="timeline">
         <div class="line text-muted"></div>
         <h3><?php echo _("New incident");?></h3>
-        <form id="new-incident" action="<?php echo WEB_URL;?>/admin/?new=incident" method="POST" class="clearfix">
+        <form id="new-incident" action="<?= WEB_PREFIX ?>/admin/?new=incident" method="POST" class="clearfix">
         <div class="panel">
           <?php if (isset($message))
           {?>

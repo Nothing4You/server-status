@@ -69,7 +69,7 @@ class Incident implements JsonSerializable
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $query = $stmt->get_result();
-    header("Location: ".WEB_URL."/admin");
+    header("Location: ".WEB_PREFIX."/admin");
   }
 
   /**
@@ -160,7 +160,7 @@ class Incident implements JsonSerializable
         $stmt->execute();
         $query = $stmt->get_result();
       }
-      header("Location: ".WEB_URL."/admin");
+      header("Location: ".WEB_PREFIX."/admin");
     }
   }
 
@@ -183,7 +183,7 @@ class Incident implements JsonSerializable
         <div class="panel-heading clearfix">
           <h2 class="panel-title"><?php echo $this->title; ?></h2>
           <?php if ($admin){
-            echo '<a href="'.WEB_URL.'/admin/?delete='.$this->id.'" class="pull-right delete"><i class="fa fa-trash"></i></a>';
+            echo '<a href="'.WEB_PREFIX.'/admin/?delete='.$this->id.'" class="pull-right delete"><i class="fa fa-trash"></i></a>';
           }?>
           <time class="pull-right timeago" datetime="<?php echo $this->date; ?>"><?php echo $this->date; ?></time>
         </div>

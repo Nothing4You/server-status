@@ -75,7 +75,7 @@ class Service implements JsonSerializable
       $stmt->bind_param("s", $name);
       $stmt->execute();
       $stmt->get_result();
-      header("Location: ".WEB_URL."/admin/?do=settings");
+      header("Location: ".WEB_PREFIX."/admin/?do=settings");
     }else
     {
       $message = _("You don't have the permission to do that!");
@@ -116,7 +116,7 @@ class Service implements JsonSerializable
       $stmt->execute();
       $query = $stmt->get_result();
 
-      header("Location: ".WEB_URL."/admin/?do=settings");
+      header("Location: ".WEB_PREFIX."/admin/?do=settings");
     }
     else
     {

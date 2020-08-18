@@ -23,7 +23,7 @@ session_start();
 //Start editing here
 define("NAME", "##name##"); //Website name
 define("TITLE", "##title##");
-define("WEB_URL", "##url##"); //Used for links 
+define("WEB_PREFIX", "##prefix##"); // Used for links. Must have a leading but no trailing slash or empty when not using a subfolder. Examples: "" or "/server-status"
 define("MAILER_NAME", "##mailer##"); //Mailer name
 define("MAILER_ADDRESS", "##mailer_email##"); //Mailer address
 define("POLICY_NAME", "##policy_name##"); //name for contact in policy

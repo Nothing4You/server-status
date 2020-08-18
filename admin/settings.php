@@ -53,7 +53,7 @@ if (isset($message)){
 					echo "<td>".$result['name']."</td>";
 					if ($user->get_rank()<=1)
 					{
-						echo '<td><a href="'.WEB_URL.'/admin/?do=settings&delete='.$result['id'].'" class="pull-right delete-service"><i class="fa fa-trash"></i></a></td>';
+						echo '<td><a href="'.WEB_PREFIX.'/admin/?do=settings&delete='.$result['id'].'" class="pull-right delete-service"><i class="fa fa-trash"></i></a></td>';
 					}
 					echo "</tr>";
 				}?>
@@ -65,7 +65,7 @@ if (isset($message)){
 
 <section>
 	<h3 class="pull-left"><?php echo _("Users");?></h3>
-	<?php if ($user->get_rank() == 0){?> <a href="<?php echo WEB_URL;?>/admin/?do=new-user" class="btn btn-success pull-right"><?php echo _("Add new user");?></a><?php }?>
+	<?php if ($user->get_rank() == 0){?> <a href="<?= WEB_PREFIX ?>/admin/?do=new-user" class="btn btn-success pull-right"><?php echo _("Add new user");?></a><?php }?>
 	<div class="table-responsive">
 		<table class="table">
 			
@@ -77,7 +77,7 @@ if (isset($message)){
 				{
 					echo "<tr>";
 					echo "<td>".$result['id']."</td>";
-					echo "<td><a href='".WEB_URL."/admin/?do=user&id=".$result['id']."'>".$result['username']."</a></td>";
+					echo "<td><a href='".WEB_PREFIX."/admin/?do=user&id=".$result['id']."'>".$result['username']."</a></td>";
 					echo "<td>".$result['name']."</td>";
 					echo "<td>".$result['surname']."</td>";
 					echo "<td><a href=\"mailto:".$result['email']."\">".$result['email']."</a></td>";
