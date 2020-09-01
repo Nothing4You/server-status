@@ -24,6 +24,8 @@ class Template{
       <!doctype html>
       <html lang="en">
       <head>
+       <?php 
+        include_once "head.php"; ?>
         <meta charset="utf-8">
         <title><?php echo $page_name." - ".NAME ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
